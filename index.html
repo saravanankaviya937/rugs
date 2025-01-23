@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-image: url('./sImages/livingrug.jpg');
+        }
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .error-msg {
+            color: red;
+            text-align: center;
+        }
+        .success-msg {
+            color: green;
+            text-align: center;
+        }
+        .actions {
+          display: flex;
+         justify-content: space-between;
+         align-items: center;
+        margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+
+<div class="login-container">
+    <h2 class="text-center">Login Form</h2>
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block"> <a href="home.html">Login</a></button>
+    
+            <a href="home.html"></a>
+            <!-- <div class="actions">
+                <button type="submit" class="btn btn-primary btn-block"><a href="home.html">Login</a></button>
+            </div> -->
+        
+        <div class="text-center mt-3">
+            <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a> |
+            <a href="#" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
+        </div>
+    </form>
+    <div id="message"></div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div class="modal" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="forgotPasswordForm">
+                    <div class="form-group">
+                        <label for="resetEmail">Enter your email address</label>
+                        <input type="email" class="form-control" id="resetEmail" placeholder="Enter email">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sign Up Modal -->
+<div class="modal" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signUpModalLabel">Sign Up</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="signUpForm">
+                    <div class="form-group">
+                        <label for="signUpUsername">Username</label>
+                        <input type="text" class="form-control" id="signUpUsername" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUpPassword">Password</label>
+                        <input type="password" class="form-control" id="signUpPassword" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevent form submission
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // Dummy credentials
+        const correctUsername = "admin";
+        const correctPassword = "password123";
+
+        const messageElement = document.getElementById('message');
+        
+        if (username === correctUsername && password === correctPassword) {
+            messageElement.innerHTML = "<p class='success-msg'>Login Successful!</p>";
+        } else {
+            messageElement.innerHTML = "<p class='error-msg'>Invalid Username or Password</p>";
+        }
+    });
+
+    // Forgot Password functionality (just a simple message for this example)
+    document.getElementById('forgotPasswordForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('resetEmail').value;
+        alert(`Password reset instructions sent to: ${email}`);
+        $('#forgotPasswordModal').modal('hide');
+    });
+
+    // Sign Up functionality (just a simple message for this example)
+    document.getElementById('signUpForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const username = document.getElementById('signUpUsername').value;
+        const password = document.getElementById('signUpPassword').value;
+        alert(`Account created for ${username}!`);
+        $('#signUpModal').modal('hide');
+    });
+</script>
+
+</body>
+</html>
